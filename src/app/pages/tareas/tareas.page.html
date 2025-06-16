@@ -1,0 +1,127 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-back-button defaultHref="/" slot="start"></ion-back-button>
+    <ion-title>
+      Mis Tareas
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>
+        Agregar Nueva Tarea
+      </ion-card-title>
+    </ion-card-header>
+    
+    <ion-card-content>
+      <ion-item>
+        <ion-label position="stacked">Título de la tarea</ion-label>
+        <ion-input 
+          [(ngModel)]="nuevaTarea" 
+          placeholder="Escribe tu tarea aquí..."
+          clear-input="true">
+        </ion-input>
+      </ion-item>
+
+      <ion-item style="padding-top: 20px;">
+        <ion-segment [(ngModel)]="prioridadSeleccionada" mode="ios">
+          @for (prioridad of prioridades; track prioridad.valor) {
+            <ion-segment-button value="{{prioridad.valor}}">
+              <div class="circulo-prioridad" [style.background-color]="prioridad.color"></div>
+              <ion-label>{{prioridad.nombre}}</ion-label>
+            </ion-segment-button>
+          }
+        </ion-segment>
+      </ion-item>
+
+      <ion-button 
+        expand="block" 
+        (click)="agregarTarea()" 
+        [disabled]="nuevaTarea.trim() === ''"
+        class="ion-margin-top">
+        <ion-icon name="add-circle" slot="start"></ion-icon>
+        Agregar Tarea
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  @if (hayTareas) {
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>
+          Lista de Tareas ({{tareas.length}})
+        </ion-card-title>
+      </ion-card-header>
+      
+      <ion-card-content>
+        <ion-list>
+          @for (tarea of tareas; track tarea.id) {
+            <ion-item [class.tarea-completada]="tarea.completada">
+              
+              <ion-checkbox 
+                slot="start" 
+                [checked]="tarea.completada"
+                (ionChange)="toggleCompletada(tarea)">
+              </ion-checkbox>
+              
+              <div class="circulo-prioridad-tarea" [style.background-color]="obtenerColorPrioridad(tarea.prioridad)"></div>
+              
+              <ion-label class="ion-margin-start">
+                <h2 [class.texto-tachado]="tarea.completada">
+                  {{tarea.titulo}}
+                </h2>
+              </ion-label>
+              
+              <ion-button 
+                fill="clear" 
+                color="danger" 
+                slot="end"
+                (click)="eliminarTarea(tarea.id)">
+                <ion-icon name="trash-outline"></ion-icon>
+              </ion-button>
+              
+            </ion-item>
+          }
+        </ion-list>
+        
+       
+      </ion-card-content>
+    </ion-card>
+  }
+
+  @if (!hayTareas) {
+    <ion-card>
+      <ion-card-content class="text-center">
+        <ion-icon name="clipboard-outline" size="large" color="medium"></ion-icon>
+        <h2>
+          No tienes tareas pendientes
+        </h2>
+        
+        <p>
+          ¡Vamos a empezar!
+          <br>
+          Agrega tu primera tarea usando el formulario de arriba
+        </p>
+      </ion-card-content>
+    </ion-card>
+  }
+
+</ion-content>
+
+<ion-footer style="padding: 10px;">
+  @if(hayTareas){
+   <ion-button 
+          
+          expand="block" 
+          color="danger" 
+          fill="outline"
+          (click)="eliminarTodasLasTareas()"
+          class="ion-margin-top">
+          <ion-icon name="trash-bin-outline" slot="start"></ion-icon>
+          Eliminar Todas las Tareas
+        </ion-button>
+      }
+</ion-footer>

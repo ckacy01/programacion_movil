@@ -1,0 +1,54 @@
+ion-content {
+  --background: var(--ion-color-primary);
+  --color: #fff;
+}
+
+
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 48px 24px;
+  text-align: center;
+}
+
+.header-section {
+  .app-logo {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 24px;
+    background: #fff;
+    border-radius: 18px;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    font-weight: 300;
+    line-height: 1.2;
+    margin-bottom: 16px;
+
+    strong {
+      font-weight: 700;
+    }
+  }
+
+  p {
+    font-size: 1rem;
+    opacity: 0.8;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+}
+
+.main-button {
+  --background: #ffffff;
+  --background-activated: #f0f0f0;
+  --color: var(--ion-color-primary);
+  --border-radius: 15px;
+  --box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+  height: 55px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-transform: none;
+}
