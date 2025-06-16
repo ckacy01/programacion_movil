@@ -7,7 +7,8 @@ Esta aplicación contiene lo siguiente:
 
 # Imagenes
 Inicio de la aplicación
-![Untitled](https://github.com/user-attachments/assets/ce62548a-925f-446e-b0fb-18a5236ee565)
+
+![Untitled](https://github.com/user-attachments/assets/ce62548a-925f-446e-b0fb-18a5236ee565){width:240px, height:353} 
 
 # Registro de tareas
 ![image](https://github.com/user-attachments/assets/9b12877e-414e-47ca-bf11-7047df34d885)
